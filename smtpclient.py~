@@ -5,8 +5,8 @@ msg = "\r\n I love computer networks!"
 endmsg = "\r\n.\r\n"
 
 # Choose a mail server (e.g. Google mail server) and call it mailserver
-mailserver = "smtp.uvic.ca"
-mailport = 25
+mailserver = "smtp.gmail.com"
+mailport = 465
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
 clientSocket = socket(AF_INET,SOCK_STREAM)

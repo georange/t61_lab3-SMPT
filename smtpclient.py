@@ -5,12 +5,11 @@ msg = "\r\n I love computer networks!"
 endmsg = "\r\n.\r\n"
 
 # Choose a mail server (e.g. Google mail server) and call it mailserver
-mailserver = "smtp.uvic.ca"
-mailport = 25
+mailserver = ("smtp.uvic.ca", 25)
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
 clientSocket = socket(AF_INET,SOCK_STREAM)
-clientSocket.connect((mailserver, mailport))
+clientSocket.connect(mailserver)
 
 recv = clientSocket.recv(1024).decode()
 print(recv)
@@ -44,7 +43,7 @@ if recv1[:3] != '250':
 
 
 # Send DATA command and print server response. 
-data = 'Data'
+data = 'DATA\r\n'
 print(data)
 clientSocket.send(data)
 
@@ -65,7 +64,7 @@ if recv1[:3] != '250':
     print('end msg 250 reply not received from server.')
 
 # Send QUIT command and get server response.
-quitCommand = 'Quit\r\n'
+quitCommand = 'QUIT\r\n'
 print(quitCommand)
 clientSocket.send(quitCommand)
 

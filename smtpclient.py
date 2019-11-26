@@ -26,54 +26,39 @@ if recv1[:3] != '250':
     print('250 reply not received from server.')
     
 # Send MAIL FROM command and print server response.
-clientSocket.send('MAIL FROM: <mail@mail.com>\r\n')
+mailFrom = 'MAIL FROM: <mail@mail.com>\r\n'
+clientSocket.send(mailFrom.encode())
+recv2 = clientSocket.recv(1024).decode()
+print(recv2)
 
-recv1 = clientSocket.recv(1024)
-print(recv1)
-if recv1[:3] != '250':
-    print('mail from 250 reply not received from server.')
-
-# Send RCPT TO command and print server response. 
-clientSocket.send('RCPT TO: <georgiam@uvic.ca>\r\n')
-
-recv1 = clientSocket.recv(1024)
-print(recv1)
-if recv1[:3] != '250':
-    print('rcpt to 250 reply not received from server.')
-
+# Send RCPT TO command and print server response.
+rcptTo = 'RCPT TO: <georgiam@uvic.ca>\r\n'
+clientSocket.send(rcptTo.encode())
+recv3 = clientSocket.recv(1024).decode()
+print(recv3)
 
 # Send DATA command and print server response. 
 data = 'DATA\r\n'
 print(data)
-clientSocket.send(data)
-
-recv1 = clientSocket.recv(1024)
-print(recv1)
-#if recv1[:3] != '250':
-    #print('data 250 reply not received from server.')
+clientSocket.send(data.encode())
+recv4 = clientSocket.recv(1024).decode()
+print(recv4)
 
 # Send message data.
-clientSocket.send(msg)
+clientSocket.send(msg.encode())
 
 # Message ends with a single period.
-clientSocket.send(endmsg)
-
-recv1 = clientSocket.recv(1024)
-print(recv1)
-if recv1[:3] != '250':
-    print('end msg 250 reply not received from server.')
+clientSocket.send(endmsg.encode())
+recv5 = clientSocket.recv(1024).decode()
+print(recv5)
 
 # Send QUIT command and get server response.
-quitCommand = 'QUIT\r\n'
-print(quitCommand)
-clientSocket.send(quitCommand)
+quitCom = 'QUIT\r\n'
+print(quitCom)
+clientSocket.send(quitCom.encode())
+recv6 = clientSocket.recv(1024).decode()
+print(recv6)
 
-recv1 = clientSocket.recv(1024)
-print(recv1)
-if recv1[:3] != '250':
-    print('quit 250 reply not received from server.')
-
-    pass
-
+# Exit code
 clientSocket.close()
 sys.exit()

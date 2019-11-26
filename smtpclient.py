@@ -49,8 +49,8 @@ clientSocket.send(data)
 
 recv1 = clientSocket.recv(1024)
 print(recv1)
-if recv1[:3] != '250':
-    print('data 250 reply not received from server.')
+#if recv1[:3] != '250':
+    #print('data 250 reply not received from server.')
 
 # Send message data.
 clientSocket.send(msg)
